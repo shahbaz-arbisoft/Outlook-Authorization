@@ -1,0 +1,27 @@
+{% extends "tutorial/layout.html" %}
+{% block content %}
+<h1>Mailbox</h1>
+{#<a href="/calendar/new" class="btn btn-light btn-sm mb-3">New event</a>#}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Organizer</th>
+      <th scope="col">Inbox</th>
+      <th scope="col">Sent</th>
+      <th scope="col">Draft</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if data %}
+      {% for event in data %}
+        <tr>
+          <td>{{ event.organizer.emailAddress.name }}</td>
+          <td>{{ event.subject }}</td>
+          <td>{{ event.start.dateTime|date:'n/d/Y g:i A' }}</td>
+          <td>{{ event.end.dateTime|date:'n/d/Y g:i A' }}</td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}
