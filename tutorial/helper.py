@@ -34,6 +34,7 @@ def process_inbox_data(email, messages):
     inbox = list()
     for msg in messages:
         if email not in (msg['sender']['emailAddress']['address'], msg['sender']['emailAddress']['address']):
+            temp_dict = {}
             temp_dict = {'sender': msg['sender']['emailAddress']['address'], 'recipients': email,
                          'subject': msg['subject'], 'body': msg['bodyPreview'], 'created': msg['createdDateTime']}
             inbox.append(temp_dict)
@@ -41,10 +42,11 @@ def process_inbox_data(email, messages):
 
 
 def process_outbox_data(email, messages):
-    sent = list()
+    outbox = list()
     for msg in messages:
         if email in (msg['sender']['emailAddress']['address'], msg['sender']['emailAddress']['address']):
+            temp_dict = {}
             temp_dict = {'sender': email, 'recipients': [m['emailAddress']['address'] for m in msg['toRecipients']],
                          'subject': msg['subject'], 'body': msg['bodyPreview'], 'created': msg['createdDateTime']}
-            sent.append(temp_dict)
-    return sent
+            outbox.append(temp_dict)
+    return outbox

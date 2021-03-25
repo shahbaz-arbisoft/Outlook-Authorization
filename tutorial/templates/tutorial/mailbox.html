@@ -39,7 +39,7 @@
         </tr>
         </thead>
         <tbody>
-        {% if sent %}
+        {% if outbox %}
             {% for i in outbox %}
                 <tr>
                     <td>{{ i.sender }}</td>
