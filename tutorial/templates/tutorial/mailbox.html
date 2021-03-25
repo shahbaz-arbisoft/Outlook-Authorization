@@ -1,27 +1,74 @@
 {% extends "tutorial/layout.html" %}
 {% block content %}
-<h1>Mailbox</h1>
-{#<a href="/calendar/new" class="btn btn-light btn-sm mb-3">New event</a>#}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Organizer</th>
-      <th scope="col">Inbox</th>
-      <th scope="col">Sent</th>
-      <th scope="col">Draft</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% if data %}
-      {% for event in data %}
+    <h1>Mailbox</h1>
+    <h5>Inbox</h5>
+    <table class="table">
+        <thead>
         <tr>
-          <td>{{ event.organizer.emailAddress.name }}</td>
-          <td>{{ event.subject }}</td>
-          <td>{{ event.start.dateTime|date:'n/d/Y g:i A' }}</td>
-          <td>{{ event.end.dateTime|date:'n/d/Y g:i A' }}</td>
+            <th scope="col">Sender</th>
+            <th scope="col">Recipient</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Body</th>
+            <th scope="col">Created</th>
         </tr>
-      {% endfor %}
-    {% endif %}
-  </tbody>
-</table>
+        </thead>
+        <tbody>
+        {% if inbox %}
+            {% for i in inbox %}
+                <tr>
+                    <td>{{ i.sender }}</td>
+                    <td>{{ i.recipients }}</td>
+                    <td>{{ i.subject }}</td>
+                    <td>{{ i.body }}</td>
+                    <td>{{ i.created }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <h5>Outbox</h5>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Sender</th>
+            <th scope="col">Recipients</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Body</th>
+            <th scope="col">Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if sent %}
+            {% for i in outbox %}
+                <tr>
+                    <td>{{ i.sender }}</td>
+                    <td>{{ i.recipients }}</td>
+                    <td>{{ i.subject }}</td>
+                    <td>{{ i.body }}</td>
+                    <td>{{ i.created }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <h5>Draft</h5>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if draft %}
+            {% for i in draft %}
+                <tr>
+                    <td>{{ i }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
 {% endblock %}
