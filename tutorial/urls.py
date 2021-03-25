@@ -8,4 +8,7 @@ urlpatterns = [
     path('signout', views.sign_out, name='signout'),
     path('callback', views.callback, name='callback'),
     path('mailbox', views.mailbox, name='mailbox'),
+    path('inbox', views.inbox, name='inbox'),
+    path('outbox', views.outbox, name='outbox'),
+    path('drafts', views.drafts, name='drafts'),
     ]

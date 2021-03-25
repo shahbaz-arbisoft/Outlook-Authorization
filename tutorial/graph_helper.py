@@ -32,6 +32,26 @@ def get_inbox_mailfolder_data(token):
         'Authorization': f'Bearer {token}'
         }
     # Send GET to /me/mailFolders/inbox/messages
-    mailbox = requests.get(f'{graph_url}/me/mailFolders/inbox/messages', headers=headers)
+    mailfolder_inbox = requests.get(f'{graph_url}/me/mailFolders/inbox/messages', headers=headers)
 
-    return mailbox.json()
+    return mailfolder_inbox.json()
+
+
+def get_outbox_mailfolder_data(token):
+    headers = {
+        'Authorization': f'Bearer {token}'
+        }
+    # Send GET to /me/mailFolders/outbox/messages
+    mailfolder_outbox = requests.get(f'{graph_url}/me/mailFolders/sentitems/messages', headers=headers)
+
+    return mailfolder_outbox.json()
+
+
+def get_drafts_mailfolder_data(token):
+    headers = {
+        'Authorization': f'Bearer {token}'
+        }
+    # Send GET to /me/mailFolders/drafts/messages
+    mailfolder_drafts = requests.get(f'{graph_url}/me/mailFolders/drafts/messages', headers=headers)
+
+    return mailfolder_drafts.json()

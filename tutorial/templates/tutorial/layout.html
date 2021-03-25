@@ -34,6 +34,27 @@
                            href="{% url 'mailbox' %}">Mailbox</a>
                     </li>
                 {% endif %}
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item" data-turbolinks="false">
+                        <a class="nav-link{% if request.resolver_match.view_name == 'inbox' %} active{% endif %}"
+                           href="{% url 'inbox' %}">Inbox</a>
+                    </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item" data-turbolinks="false">
+                        <a class="nav-link{% if request.resolver_match.view_name == 'outbox' %} active{% endif %}"
+                           href="{% url 'outbox' %}">Outbox</a>
+                    </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item" data-turbolinks="false">
+                        <a class="nav-link{% if request.resolver_match.view_name == 'drafts' %} active{% endif %}"
+                           href="{% url 'drafts' %}">Drafts</a>
+                    </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
